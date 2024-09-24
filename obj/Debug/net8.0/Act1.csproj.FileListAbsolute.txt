@@ -1,0 +1,14 @@
+C:\Users\Josue\Desktop\Practica1-main\bin\Debug\net8.0\Act1.exe
+C:\Users\Josue\Desktop\Practica1-main\bin\Debug\net8.0\Act1.deps.json
+C:\Users\Josue\Desktop\Practica1-main\bin\Debug\net8.0\Act1.runtimeconfig.json
+C:\Users\Josue\Desktop\Practica1-main\bin\Debug\net8.0\Act1.dll
+C:\Users\Josue\Desktop\Practica1-main\bin\Debug\net8.0\Act1.pdb
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.AssemblyInfoInputs.cache
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.AssemblyInfo.cs
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.csproj.CoreCompileInputs.cache
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.dll
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\refint\Act1.dll
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.pdb
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\Act1.genruntimeconfig.cache
+C:\Users\Josue\Desktop\Practica1-main\obj\Debug\net8.0\ref\Act1.dll
