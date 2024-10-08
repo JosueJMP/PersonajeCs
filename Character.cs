@@ -1,85 +1,94 @@
-﻿namespace Act1;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-public class Character
+namespace Act1
 {
-    public string Name { get; set; }
-    public int MaxHitPoints { get; set; }
-    public int CurrentHitPoints { get; private set; }
-    public int BaseDamage { get; set; }
-    public int BaseArmor { get; set; }
-    private List<IApply> Inventory { get; set; }
-
-    public Character(string name, int maxHitPoints, int baseDamage, int baseArmor)
+    public class Character
     {
-        Name = name;
-        MaxHitPoints = maxHitPoints;
-        CurrentHitPoints = maxHitPoints; 
-        BaseDamage = baseDamage;
-        BaseArmor = baseArmor;
-        Inventory = new List<IApply>();
-    }
+        public string Name { get; set; }
+        public int MaxHitPoints { get; set; }
+        public int CurrentHitPoints { get; private set; }
+        public int BaseDamage { get; set; }
+        public int BaseArmor { get; set; }
+        private List<IApply> Inventory { get; set; }
+        public List<Minion> Minions { get; private set; } 
 
-    public int Attack()
-    {
-        int totalDamage = BaseDamage;
-        foreach (var item in Inventory)
+        public Character(string name, int maxHitPoints, int baseDamage, int baseArmor)
         {
-            if (item is Weapon weapon)
+            Name = name;
+            MaxHitPoints = maxHitPoints;
+            CurrentHitPoints = maxHitPoints; 
+            BaseDamage = baseDamage;
+            BaseArmor = baseArmor;
+            Inventory = new List<IApply>();
+            Minions = new List<Minion>(); 
+        }
+
+        public int Attack()
+        {
+            int totalDamage = BaseDamage;
+            foreach (var item in Inventory)
             {
-                totalDamage += weapon.Damage;
+                if (item is Weapon weapon)
+                {
+                    totalDamage += weapon.Damage;
+                }
+            }
+            return totalDamage;
+        }
+
+        public int Defense()
+        {
+            int totalDefense = BaseArmor; 
+            foreach (var item in Inventory)
+            {
+                if (item is Protection protection)
+                {
+                    totalDefense += protection.Armor; 
+                }
+            }
+            return totalDefense;
+        }
+
+        public void Heal(int amount)
+        {
+            CurrentHitPoints += amount;
+            if (CurrentHitPoints > MaxHitPoints)
+            {
+                CurrentHitPoints = MaxHitPoints;
             }
         }
-        return totalDamage;
-    }
 
-    public int Defense()
-    {
-        int totalDefense = BaseArmor;
-        foreach (var item in Inventory)
+        public void ReceiveDamage(int damage)
         {
-            if (item is Protection protection)
+            int damageToTake = damage - Defense(); 
+            if (damageToTake > 0)
             {
-                totalDefense += protection.Armor;
+                CurrentHitPoints -= damageToTake; 
+                if (CurrentHitPoints < 0)
+                {
+                    CurrentHitPoints = 0; 
+                }
             }
         }
-        return totalDefense;
-    }
 
-    public void Heal(int amount)
-    {
-        CurrentHitPoints += amount;
-        if (CurrentHitPoints > MaxHitPoints)
+        public void AddToInventory(IApply item)
         {
-            CurrentHitPoints = MaxHitPoints;
-        }
-    }
-
-    public void ReceiveDamage(int damage)
-    {
-        int damageToTake = damage - Defense();
-        if (damageToTake > 0)
-        {
-            CurrentHitPoints -= damageToTake;
-            if (CurrentHitPoints < 0)
+            item.Apply(this);
+            Inventory.Add(item);
+            
+            if (item is Protection protection && protection.Name.Contains("Casco"))
             {
-                CurrentHitPoints = 0;
+                InvokeMinion();
             }
         }
-    }
 
-    public void AddToInventory(IApply item)
-    {
-        item.Apply(this);
-        Inventory.Add(item);
-    }
-
-    public override string ToString()
-    {
-        
-        return base.ToString();
-        
+        private void InvokeMinion()
+        {
+       
+            Minion minion = new Minion("Gustavo El minion Peleon", 10, 5);
+            Minions.Add(minion);
+            Console.WriteLine($"{minion.Name} ha sido invocado con {minion.Attack} de ataque y {minion.Defense} de defensa.");
+        }
     }
 }

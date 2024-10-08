@@ -1,15 +1,16 @@
-﻿namespace Act1;
-
-public abstract class Protection : IApply
+﻿namespace Act1
 {
-    public string Name { get; set; }
-    public int Armor { get; set; }
-
-    public Protection(string name, int armor)
+    public abstract class Protection : IApply
     {
-        Name = name;
-        Armor = armor;
-    }
+        public string Name { get; set; }
+        public int Armor { get; set; }
 
-    public abstract void Apply(Character character);
+        public Protection(string name, int armor)
+        {
+            Name = name;
+            Armor = armor;
+        }
+
+        public abstract void Apply(Character character);
+    }
 }
